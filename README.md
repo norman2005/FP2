@@ -54,3 +54,123 @@ Ask questions publicly in the Piazza group.
 ###	The Racket Graphical Interface Toolkit
 
 This library that i worked on can be found hear [**The Racket Graphical Interface Toolkit**][The-Racket-G-I-T]
+I played around with frames . I changed some code given in the library i used to come up with two frames . One frame for a Calender with a syncronization Button when clicked. It does not actualy do the syncronization just gives a message to show that something happended when the Click to Sync button was pressed.It shows that calender has been synced with the Map frame.
+I made changes to another code provided to change to panel view on the canvas makeing the calender canvars ever so slightly different from the map frame. The calender frame has two buttons made in the horizontal panel that when clicked will display a massage to either show next moth or the previous month. I aslo did play with mouse pointer event on the canvas and keyboard event if any of this two events do take place it will as a massage on the canvas that it happened. I took a look at pausing button which when clicked takes over the frame no other event can take place until pause event is over in mine i put 15seconds.
+
+### The Code that i played with :
+```
+#lang racket
+;Norman Mutunga
+;FP2
+(require racket/gui/base)
+
+;This creates or instantiates the frame with the label given "Normans"
+;(define frame (new frame% [label "Normans"]))
+;This part is like display it shows whats in the frame.
+;(send frame show #t) ;#t to show the frame
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Begin Frames ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;main frame for Google map 
+(define frameM (new frame% [label "Google map"]))
+;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,>>>
+;main frame created for the calender
+(define frameC (new frame% [label "CalenderMap"]))
+;;basic label
+(define msgC (new message% [parent frameC]
+                 [label " Syncronize Travel/Arrival Time /Due"]))
+;; Button to be clicked to triger an event.
+;it creates this on REP : (object:button% ...)
+(new button% [parent frameC]
+     [label "Click to Sync"]
+     [callback (λ (button event)
+                 (send msgC set-label "Callender Syncronized with map"))])
+;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,>>>
+;;basic label
+(define msgM (new message% [parent frameM]
+                 [label "Type Of Map"]))
+;; Button to be clicked to triger an event.
+;it creates this on REP : (object:button% ...)
+(new button% [parent frameM]
+     [label "NeedDropDown to choose MapType"]
+     [callback (λ (button event)
+                 (send msgM set-label "Map Type/gotten/to/sync/with/calender"))])
+
+;;;;;;;;;;Run the project;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;show calender
+(send frameC show #t)
+;;show the map
+;(send frameM show #t)
+;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,End Frames,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,Canvas Begin,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+;; A drowing Canvas.
+;,,,,,,,,,,Calender Canvas
+(define my-calender-canvas%
+  ;The base class is canvas%
+  (class canvas%
+    ; define an overiding methode to handle mouse events on Calender
+    (define/override (on-event event )
+      (send msgC set-label "Canvas Mouse"))
+    ;define overriding methode to handle keyboard events
+    (define/override (on-char event)
+      (send msgC set-label "Canvas Keyboard"))
+    ; call the superclass init , passing on all init args 
+    ( super-new )))
+;,,,,,,,,,,,,My Map Canvas,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+(define my-map-canvas%
+  ;The base class is canvas%
+  (class canvas%
+    ; define an overiding methode to handle mouse events on Map
+    (define/override (on-event event )
+      (send msgM set-label "Canvas Mouse"))
+    ;define overriding methode to handle keyboard events
+    (define/override (on-char event)
+      (send msgM set-label "Canvas Keyboard"))
+    ; call the superclass init , passing on all init args 
+    ( super-new )))
+;,,,,,,,,,,,,,,End of Map Canvas,,,,,,,,,,,,,,,,,,,,,,,,
+;make a canvas that handles events in the frame
+;Sets Canvas for Calender
+;it creates this on REP :(object:my-canvas% ...)
+(new my-calender-canvas% [parent frameC])
+;Sets Canvas for Map
+;it creates this on REP :(object:my-canvas% ...)
+(new my-map-canvas% [parent frameM])
+;,,,,,,,,,,,,,,,,,,,,,,,,,,canvas End,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+;,,,,,,,,,,,This will pause for 5 seconds the entire frame,,,,,,,,
+;it creates this on REP : (object:button% ...)
+(new button% [ parent frameM]
+     [label "Pause"]
+     [callback (λ (button event) (sleep 15))])
+;,,,,,,,,,,,,,End of Pause on Map,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+;,,,,,,,,,,,,Design the Calender,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+;Creates a new Horizontal panel buttons in Calender,,,,,,,,,,
+(define panelC (new horizontal-panel% [parent frameC]))
+;;Left Button
+(new button% [parent panelC]
+     [label "Previous"]
+     [callback (λ (button event )
+                 (send msgC set-label "Previous Month"))])
+;;Right Button
+(new button% [parent panelC]
+     [label "Next"]
+     [callback (λ (button event )
+                 (send msgC set-label "Next Month"))])
+;,,,,,,,,,,,,,,,,,end of panel,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+
+
+```
+
+
+### Out Put From the code on the REPL:
+
+```
+(object:button% ...)
+(object:button% ...)
+(object:my-calender-canvas% ...)
+(object:my-map-canvas% ...)
+(object:button% ...)
+(object:button% ...)
+(object:button% ...)
+> 
+```
+### Out Put Frames that have been resized 
