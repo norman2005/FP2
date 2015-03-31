@@ -53,9 +53,11 @@ Ask questions publicly in the Piazza group.
 
 ###	The Racket Graphical Interface Toolkit
 
-This library that i worked on can be found hear [**The Racket Graphical Interface Toolkit**][The-Racket-G-I-T]
-I played around with frames . I changed some code given in the library i used to come up with two frames . One frame for a Calender with a syncronization Button when clicked. It does not actualy do the syncronization just gives a message to show that something happended when the Click to Sync button was pressed.It shows that calender has been synced with the Map frame.
-I made changes to another code provided to change to panel view on the canvas makeing the calender canvars ever so slightly different from the map frame. The calender frame has two buttons made in the horizontal panel that when clicked will display a massage to either show next moth or the previous month. I aslo did play with mouse pointer event on the canvas and keyboard event if any of this two events do take place it will as a massage on the canvas that it happened. I took a look at pausing button which when clicked takes over the frame no other event can take place until pause event is over in mine i put 15seconds.
+This library that I worked on can be found hear [**The Racket Graphical Interface Toolkit**][The-Racket-G-I-T]
+I played around with frames, panels, and buttons. I changed some code given in the library I used to come up with two frames. One frame for a Calendar with a synchronization Button when clicked. It does not actually do the synchronization just gives a message to show that something happened when the Click to Sync button is pressed. It shows that calendar has been synched with the Map frame.
+I made changes to another code provided to change to panel view on the canvas making the calendar canvas ever so slightly different from the map frame. The calendar frame has two buttons made in the horizontal panel that when clicked will display a massage to either show next month or the previous month. I also did play with mouse pointer event on the canvas and keyboard event if any of these two events do take place they would trigger as a massage on the canvas showing which event happened. I took a look at pausing button which when clicked takes over the frame no other event can take place until pause event is over in mine I put 15seconds.
+ 
+
 
 ### The Code that i played with :
 ```
@@ -174,3 +176,4 @@ I made changes to another code provided to change to panel view on the canvas ma
 > 
 ```
 ### Out Put Frames that have been resized 
+ I am not able to find a way to show the visual out put on this platfoarm . 
