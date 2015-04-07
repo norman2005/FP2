@@ -72,10 +72,14 @@ I made changes to another code provided to change to panel view on the canvas ma
 ;(send frame show #t) ;#t to show the frame
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;Begin Frames ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;main frame for Google map 
-(define frameM (new frame% [label "Google map"]))
+(define frameM (new frame% [label "Google map"]
+                           [width 300]
+                           [height 500]))
 ;,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,>>>
 ;main frame created for the calender
-(define frameC (new frame% [label "CalenderMap"]))
+(define frameC (new frame% [label "CalenderMap"]
+                           [width 300]
+                           [height 500]))
 ;;basic label
 (define msgC (new message% [parent frameC]
                  [label " Syncronize Travel/Arrival Time /Due"]))
